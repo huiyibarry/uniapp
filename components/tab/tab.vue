@@ -13,17 +13,28 @@
 
 <script>
 	export default {
-		props:{
-			list:{
-				type:Array,
-				default(){
-					return []
-				}
-			}
+		created() {
+			this.getLabel()
 		},
 		data() {
-			return {				
+			return {	
+				list:[]
 			};
+		},
+		methods:{
+			getLabel(){
+				let that = this
+				uniCloud.callFunction({
+					name:"get_label_list",
+					success(result) {
+					  var res= result.result;
+					  that.list = res.data;				
+					},
+					fail(err) {
+						console.log(err);
+					}
+				})
+			}
 		}
 	}
 </script>

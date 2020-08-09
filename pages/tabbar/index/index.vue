@@ -2,7 +2,7 @@
 	<view class="content">
 		<!-- 自定义导航栏 -->
 		<navbar></navbar>
-		<tab :list="tabList"></tab>
+		<tab></tab>
 	</view>
 </template>
 
@@ -11,14 +11,13 @@
 	export default {
 		data() {
 			return {
-				tabList: []
+				
 			}
 		},
 		onLoad() {
-			this.getLabel()
 		},
 		methods: {
-			getLabel(){
+			/* getLabel(){
 				let that = this
 				uniCloud.callFunction({
 					name:"get_label_list",
@@ -31,7 +30,7 @@
 						console.log(err);
 					}
 				})
-			}
+			} */
 		}
 	}
 </script>
