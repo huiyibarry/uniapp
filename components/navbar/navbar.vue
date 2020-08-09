@@ -1,10 +1,14 @@
 <template>
 	<view class="navbar">
 			<view class="navbar-fixed">
-				<view class="navbar-serach">
-					<view class="navbar-serach_icon"></view>
-					<view class="navbar-serach_text">uni-app、vue</view>
-				</view>
+				<!-- 状态栏 -->
+				<view :style="{height:statusBarHeight+'px'}"></view>
+				<view class="navbar-content" :style="{height:navBarHeight+'px',width:windowWidth+'px'}">
+					<view class="navbar-serach">
+						<view class="navbar-serach_icon"></view>
+						<view class="navbar-serach_text">uni-app、vue</view>
+					</view>	
+				</view>				
 			</view>
 			<view style="height: 45px;"></view>
 		</view>
@@ -14,28 +18,43 @@
 	export default {
 		data() {
 			return {
-				
+				statusBarHeight : 20,
+				navBarHeight: 45,
+				windowWidth: 375
 			};
+		},
+		created() {
+			const info = uni.getSystemInfoSync()
+			this.statusBarHeight = info.statusBarHeight;
+			//#ifndef APP-PLUS || H5 ||MP-ALIPAY
+			//小程序类悬浮按钮（胶囊按钮）
+			const  menuButtonInfo = uni.getMenuButtonBoundingClientRect()
+			// (胶囊底部高度 - 状态栏的高度) + (胶囊顶部高度 - 状态栏内的高度) = 导航栏的高度
+			this.navBarHeight = (menuButtonInfo.bottom - info.statusBarHeight) + (menuButtonInfo.top - info.statusBarHeight)
+			this.windowWidth = menuButtonInfo.left
+			//#endif
 		}
 	}
 </script>
 
 <style lang="scss">
 	.navbar {
-			.navbar-fixed {
-				position: fixed;
-				top: 0;
-				left: 0;
-				z-index: 99;
+		.navbar-fixed {
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 99;
+			width: 100%;
+			background-color: $html-base-color;
+
+			.navbar-content {
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				padding: 0 15px;
-				width: 100%;
 				height: 45px;
-				background-color: $html-base-color;
 				box-sizing: border-box;
-	
+
 				.navbar-serach {
 					display: flex;
 					align-items: center;
@@ -44,20 +63,22 @@
 					height: 30px;
 					border-radius: 30px;
 					background-color: #fff;
-	
+
 					.navbar-serach_icon {
 						width: 10px;
 						height: 10px;
 						border: 1px red solid;
 						margin-right: 10px;
 					}
-	
+
 					.navbar-serach_text {
 						font-size: 12px;
 						color: #999;
 					}
 				}
 			}
-	
+
 		}
+
+	}
 </style>
