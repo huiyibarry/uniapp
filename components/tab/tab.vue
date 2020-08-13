@@ -2,7 +2,7 @@
 	<view class="tab">
 		<scroll-view scroll-x class="tab-scroll">
 			<view class="tab-box">
-				<view v-for="(item,index) in list" :key="index" class="tab-box-item">{{item.name}}</view>
+				<view v-for="(item,index) in list" :key="index" class="tab-box-item" @click="clickTab(item,index)" :class="{active:activeIndex===index}">{{item.name}}</view>
 			</view>
 		</scroll-view>
 		<view class="tab-icons">
@@ -18,7 +18,8 @@
 		},
 		data() {
 			return {	
-				list:[]
+				list:[],
+				activeIndex:0
 			};
 		},
 		methods:{
@@ -26,9 +27,12 @@
 				this.$api.get_label_list({
 					name:'get_label_list'
 				}).then(res=>{
-					console.log(res);
 					this.list = res.data
 				})
+			},
+			clickTab(item,index){
+				this.activeIndex = index
+				this.$emit('tab',{data:item,index:inde})
 			}
 		}
 	}
@@ -71,6 +75,9 @@
 				flex-shrink: 0;//不挤压
 				padding: 0 10px;
 				color: #333;
+				&.active{
+					color: $html-base-color;
+				}
 			}
 		}
 	}
