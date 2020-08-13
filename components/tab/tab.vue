@@ -23,17 +23,17 @@
 		},
 		methods:{
 			getLabel(){
-				let that = this
-				uniCloud.callFunction({
-					name:"get_label_list",
-					success(result) {
-					  var res= result.result;
-					  that.list = res.data;				
-					},
-					fail(err) {
-						console.log(err);
-					}
+				this.$api.get_label_list({
+					name:'get_label_list'
+				}).then(res=>{
+					console.log(res);
+					this.list = res.data
 				})
+				/* uniCloud.callFunction({
+					name:"get_label_list"					
+				}).then(res=>{
+					this.list = res.result.data
+				}) */
 			}
 		}
 	}
