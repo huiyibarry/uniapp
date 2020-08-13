@@ -1,20 +1,15 @@
-const get_label_list = (data)=>{
-	return new Promise((resolve,reject)=>{
-			uniCloud.callFunction({
-				name:"get_label_list",
-				data:data
-			}).then(res=>{
-				if(res.result.code === 200){
-					resolve(res.result)
-				}else{
-					reject(res.result)
-				}
-			}).catch(err=>{
-				reject(err)
-			})
-	})
-}
-
-export default {
-	get_label_list
-}
+//批量导出
+const requireApi = require.context(
+	// api 目录的相对路径
+	'.',
+	// 是否查询子目录
+	false,
+	// 查询文件的一个后缀
+	/.js$/
+)
+let module = {}
+requireApi.keys().forEach((key,index)=>{
+	if(key === './index.js') return
+	Object.assign(module,requireApi(key))
+})
+export default module

@@ -1,8 +1,11 @@
 <template>
-	<view class="content">
+	<view class="home">
 		<!-- 自定义导航栏 -->
 		<navbar></navbar>
-		<tab></tab>
+		<tab @tab="tab"></tab>
+		<index-scroll>
+			<list-card v-for="item in 5">{{item}}</list-card>
+		</index-scroll>
 	</view>
 </template>
 
@@ -11,30 +14,31 @@
 	export default {
 		data() {
 			return {
-				
+
 			}
 		},
-		onLoad() {
-		},
+		onLoad() {},
 		methods: {
-			/* getLabel(){
-				let that = this
-				uniCloud.callFunction({
-					name:"get_label_list",
-					success(result) {
-					  var res= result.result;
-					  console.log(res.data);
-					  that.tabList = res.data;				
-					},
-					fail(err) {
-						console.log(err);
-					}
-				})
-			} */
+			tab({
+				data,
+				index
+			}) {
+				console.log(data, index);
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	
+	page {
+		height: 100%;
+		display: flex;
+	}
+
+	.home {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		overflow: hidden;
+	}
 </style>
