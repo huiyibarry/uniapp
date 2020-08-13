@@ -32,7 +32,7 @@
 			},
 			clickTab(item,index){
 				this.activeIndex = index
-				this.$emit('tab',{data:item,index:inde})
+				this.$emit('tab',{data:item,index:index})
 			}
 		}
 	}
