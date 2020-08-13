@@ -29,11 +29,6 @@
 					console.log(res);
 					this.list = res.data
 				})
-				/* uniCloud.callFunction({
-					name:"get_label_list"					
-				}).then(res=>{
-					this.list = res.result.data
-				}) */
 			}
 		}
 	}
