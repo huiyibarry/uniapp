@@ -4,7 +4,9 @@
 		<navbar></navbar>
 		<tab @tab="tab"></tab>
 		<index-scroll>
-			<list-card v-for="item in 25">{{item}}</list-card>
+			<list-card mode="base"></list-card>
+			<list-card mode="more_img"></list-card>
+			<list-card mode="big_img"></list-card>
 		</index-scroll>
 	</view>
 </template>

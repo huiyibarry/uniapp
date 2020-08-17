@@ -23,7 +23,6 @@
 		flex: 1;
 		overflow: hidden;
 		box-sizing: border-box;
-
 		.list-scroll {
 			height: 100%;
 			display: flex;
