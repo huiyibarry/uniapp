@@ -4,7 +4,7 @@
 		<navbar></navbar>
 		<tab @tab="tab"></tab>
 		<index-scroll>
-			<list-card v-for="item in 5">{{item}}</list-card>
+			<list-card v-for="item in 25">{{item}}</list-card>
 		</index-scroll>
 	</view>
 </template>
@@ -34,11 +34,9 @@
 		height: 100%;
 		display: flex;
 	}
-
 	.home {
 		display: flex;
 		flex-direction: column;
 		flex: 1;
-		overflow: hidden;
 	}
 </style>
